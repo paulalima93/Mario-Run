@@ -80,12 +80,14 @@ function draw(){
   if (gameState === "play") {
      score = score + Math.round(frameRate()/60);
 
-    if (keyDown("space") && mario.y >100) {
+      
+     
+    if (touches.length > 0 ||keyDown("space") && mario.y >100) {
       mario.velocityY = -10; 
       mario.scale = 0.2;
       //trocar para animação do pulo
       //tocar som do pulo
-     
+     touches = [];
       mario.changeAnimation("pulo")
       jumpSound.play();
     }
@@ -138,7 +140,11 @@ else if(gameState === "end") {
    
 }
   
-  
+   
+    if(touches.length>0 || keyDown("SPACE")) {      
+      reset();
+      touches = []
+    }
     
 
   }
